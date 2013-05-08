@@ -1,0 +1,16 @@
+\codelnr{\ 1\ }\codeComment{\# 第一种方法}\\
+\codelnr{\ 2\ }\codeStatement{case} \codeStatement{"}\codePreProc{\$-}\codeStatement{"} \codeStatement{in}\\
+\codelnr{\ 3\ }\tab{}*i*\codeStatement{)}\\
+\codelnr{\ 4\ }\tab{}\tab{}\codeStatement{echo} 这个是交互式的 shell。\\
+\codelnr{\ 5\ }\tab{}\tab{}\codeStatement{;;}\\
+\codelnr{\ 6\ }\tab{}*\codeStatement{)}\\
+\codelnr{\ 7\ }\tab{}\tab{}\codeStatement{echo} 这个不是交互式的 shell。\\
+\codelnr{\ 8\ }\tab{}\tab{}\codeStatement{;;}\\
+\codelnr{\ 9\ }\codeStatement{esac}\\
+\codelnr{10\ }\\
+\codelnr{11\ }\codeComment{\# 第二种方法}\\
+\codelnr{12\ }\codeStatement{if }\codeStatement{[} \codeStatement{-z} \codeStatement{"}\codePreProc{\$PS1}\codeStatement{"} \codeStatement{]}\codeStatement{;} \codeStatement{then}\\
+\codelnr{13\ }\tab{}\codeStatement{echo} 这个不是交互式的 shell。\\
+\codelnr{14\ }\codeStatement{else}\\
+\codelnr{15\ }\tab{}\codeStatement{echo} 这个是交互式的 shell。\\
+\codelnr{16\ }\codeStatement{fi}

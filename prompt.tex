@@ -1,0 +1,28 @@
+\codelnr{\ 1\ }\codeIdentifier{CL}=\codeStatement{"}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 2\ }\codeIdentifier{GREEN}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0;32m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 3\ }\codeIdentifier{BGREEN}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0;32;1m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 4\ }\codeIdentifier{XORG}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0;36m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 5\ }\codeIdentifier{XRED}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0;35m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 6\ }\codeIdentifier{BRED}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0;35;1m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 7\ }\codeIdentifier{ORG}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[0;33m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 8\ }\codeIdentifier{DARK\_GRAY}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[1;30m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{\ 9\ }\codeIdentifier{CYAN}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[1;36m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{10\ }\codeIdentifier{BLUE}=\codeStatement{"}\codePreProc{\$CL}\codeConstant{\textbackslash{}[}\codeSpecial{\textbackslash{}e}\codeConstant{[1;34m\textbackslash{}]}\codeStatement{"}\\
+\codelnr{11\ }\\
+\codelnr{12\ }\codeComment{\# 为了显示方便，下面一行用命令替换进行赋值。实际使用时应该用单引号。}\\
+\codelnr{13\ }\codeIdentifier{PROMPT\_COMMAND}=\codePreProc{\$(}\\
+\codelnr{14\ }\codeSpecial{\tab{}}\codeStatement{echo}\codeSpecial{ -ne }\codeStatement{"}\codeSpecial{\textbackslash{}033}\codeConstant{]0;}\codePreProc{\$\{}\codePreProc{USER}\codePreProc{\}}\codeConstant{@}\codePreProc{\$\{}\codePreProc{HOSTNAME}\codePreProc{\}}\codeConstant{: }\codePreProc{\$\{}\codePreProc{PWD}\codePreProc{\}}\codeSpecial{\textbackslash{}007}\codeStatement{"}\\
+\codelnr{15\ }\codeSpecial{\tab{}}\codeIdentifier{NTTY}=\codeSpecial{\$}\codeStatement{(}\codeStatement{tty}\codeSpecial{ }\codeStatement{|}\codeSpecial{ }\codeStatement{cut}\codeSpecial{ -d}\codeStatement{"}\codeConstant{/}\codeStatement{"}\codeSpecial{ -f3}\codeConstant{-4}\codeStatement{)}\\
+\codelnr{16\ }\codeSpecial{\tab{}}\codeIdentifier{LS}=\codeSpecial{\$}\codeStatement{(}\codeStatement{ls}\codeSpecial{ }\codeStatement{|}\codeSpecial{ }\codeStatement{wc}\codeSpecial{ -l}\codeStatement{)}\\
+\codelnr{17\ }\codeSpecial{\tab{}}\codeIdentifier{LSA}=\codeSpecial{\$}\codeStatement{(}\codeStatement{ls}\codeSpecial{ -a }\codeStatement{|}\codeSpecial{ }\codeStatement{wc}\codeSpecial{ -l}\codeStatement{)}\\
+\codelnr{18\ }\\
+\codelnr{19\ }\codeSpecial{\tab{}}\codeIdentifier{L1a}=\codeStatement{"}\codePreProc{\$BLUE}\codeConstant{[}\codePreProc{\$BGREEN}\codeConstant{\textbackslash{}u}\codePreProc{\$GREEN}\codeConstant{@\textbackslash{}h:}\codePreProc{\$NTTY}\codeConstant{\textbackslash{}s}\codePreProc{\$BLUE}\codeConstant{]}\codePreProc{\$BLUE}\codeStatement{"}\\
+\codelnr{20\ }\codeSpecial{\tab{}}\codeIdentifier{L1b}=\codeStatement{"}\codePreProc{\$ORG}\codeSpecial{\textbackslash{}t}\codePreProc{\$BLUE}\codeStatement{"}\\
+\codelnr{21\ }\codeSpecial{\tab{}}\codeIdentifier{L1c}=\codeStatement{"}\codePreProc{\$BLUE}\codeConstant{<}\codePreProc{\$BRED}\codeConstant{\textbackslash{}w}\codePreProc{\$BLUE}\codeConstant{>}\codePreProc{\$BLUE}\codeStatement{"}\\
+\codelnr{22\ }\codeSpecial{\tab{}}\codeIdentifier{L1d}=\codeStatement{"}\codeConstant{(}\codePreProc{\$XRED\$LS}\codeConstant{/}\codePreProc{\$LSA\$BLUE}\codeConstant{)}\codePreProc{\$BLUE}\codeStatement{"}\\
+\codelnr{23\ }\codeSpecial{\tab{}}\codeIdentifier{L2}=\codeStatement{"}\codePreProc{\$CYAN}\codeSpecial{\textbackslash{}\textbackslash{}\textbackslash{}\$}\codePreProc{\$CL}\codeStatement{"}\\
+\codelnr{24\ }\codeSpecial{\tab{}}\codeStatement{export}\codeSpecial{ }\codePreProc{PS1}\codeStatement{="}\codePreProc{\$L1a}\codeConstant{-}\codePreProc{\$L1b}\codeConstant{-}\codePreProc{\$L1c}\codeConstant{-}\codePreProc{\$L1d}\codeConstant{-}\codeSpecial{\textbackslash{}n}\codePreProc{\$L2}\codeConstant{ }\codeStatement{"}\\
+\codelnr{25\ }\codeSpecial{\tab{}\#}\codeStatement{export}\codeSpecial{ }\codePreProc{PS1}\codeStatement{="}\codeConstant{[\textbackslash{}u@\textbackslash{}h:}\codePreProc{\$NTTY}\codeConstant{\textbackslash{}s]-}\codeSpecial{\textbackslash{}t}\codeConstant{-<\textbackslash{}w:}\codePreProc{\$LS}\codeConstant{/}\codePreProc{\$LSA}\codeConstant{>-}\codeSpecial{\textbackslash{}n}\codeSpecial{\textbackslash{}\textbackslash{}}\codeConstant{\$ }\codeStatement{"}\\
+\codelnr{26\ }\codeSpecial{\tab{}}\codeStatement{history}\codeSpecial{ -a}\\
+\codelnr{27\ }\codePreProc{)}\\
+\codelnr{28\ }\codeComment{\# 实际使用时，上面一行也应该改成单引号}

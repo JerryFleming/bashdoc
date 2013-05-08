@@ -1,0 +1,9 @@
+\codelnr{1\ }\codeStatement{echo} \codeSpecial{-n} \codeStatement{"}\codeSpecial{请输入一个动物的名称：}\codeStatement{"}\\
+\codelnr{2\ }\codeStatement{read} ANIMAL\\
+\codelnr{3\ }\codeStatement{echo} \codeSpecial{-n} \codeStatement{"}\codePreProc{\$ANIMAL}\codeSpecial{有}\codeStatement{"}\\
+\codelnr{4\ }\codeStatement{case} \codePreProc{\$ANIMAL} \codeStatement{in}\\
+\codelnr{5\ }\tab{}\codeStatement{(} \codeSpecial{马} \codeStatement{|} \codeSpecial{狗} \codeStatement{|} \codeSpecial{猫} \codeStatement{)} \codeStatement{echo} -n \codeStatement{"}\codeSpecial{四}\codeStatement{"}\codeStatement{;;}\\
+\codelnr{6\ }\tab{}\codeSpecial{人} \codeStatement{|} \codeSpecial{袋鼠} \codeStatement{)} \codeStatement{echo} -n \codeStatement{"}\codeSpecial{两}\codeStatement{"}\codeStatement{;;}\\
+\codelnr{7\ }\tab{}*\codeStatement{)} \codeStatement{echo} -n \codeStatement{"}\codeSpecial{末知数目的}\codeStatement{"}\codeStatement{;;}\\
+\codelnr{8\ }\codeStatement{esac}\\
+\codelnr{9\ }\codeStatement{echo} \codeStatement{"}\codeSpecial{腿。}\codeStatement{"}

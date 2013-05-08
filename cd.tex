@@ -1,0 +1,49 @@
+\codelnr{\ 1\ }\codeComment{\#!/bin/bash}\\
+\codelnr{\ 2\ }\\
+\codelnr{\ 3\ }\codeComment{\# 改进 Bash 中的 cd 命令。}\\
+\codelnr{\ 4\ }\codeComment{\# 另请参见 dirs，popd 和 pushd 命令。}\\
+\codelnr{\ 5\ }\codeComment{\# 作者 Jerry Fleming <jerryfleming2006@gmail.com>，2009 年 8 月}\\
+\codelnr{\ 6\ }\\
+\codelnr{\ 7\ }\codeStatement{cd}\codePreProc{()}\\
+\codelnr{\ 8\ }\codeSpecial{\{}\\
+\codelnr{\ 9\ }\tab{}\codeStatement{if }\codeSpecial{[[} \codePreProc{\$1} \codeStatement{=}\textasciitilde{} \textasciicircum{}(\codeStatement{[}+-\codeStatement{]})(\codeStatement{[}\codeConstant{0-9}\codeStatement{]}*)\$ \codeSpecial{]]}\\
+\codelnr{10\ }\tab{}\codeStatement{then}\\
+\codelnr{11\ }\tab{}\tab{}\codeIdentifier{CDR}=\codePreProc{\$(}\codeSpecial{ }\codeStatement{expr}\codeSpecial{ }\codePreProc{\$CDR}\codeSpecial{ }\codePreProc{\$\{}\codePreProc{BASH\_REMATCH}\codePreProc{[}\codeConstant{1}\codePreProc{]}\codePreProc{\}}\codeSpecial{ }\codePreProc{\$\{}\codePreProc{BASH\_REMATCH}\codePreProc{[}\codeConstant{2}\codePreProc{]}\codeStatement{:-}1\codePreProc{\}}\codeSpecial{ }\codePreProc{)}\\
+\codelnr{12\ }\tab{}\tab{}\codeSpecial{[[} \codePreProc{\$CDR} \codeStatement{-lt} \codeConstant{1} \codeSpecial{]]} \codeStatement{\&\&} \codeIdentifier{CDR}=\codeConstant{1}\\
+\codelnr{13\ }\tab{}\tab{}\codeSpecial{[[} \codePreProc{\$CDR} \codeStatement{-gt} \codePreProc{\$\{\#}\codePreProc{CDP}\codePreProc{[}@\codePreProc{]}\codePreProc{\}} \codeSpecial{]]} \codeStatement{\&\&} \codeIdentifier{CDR}=\codePreProc{\$\{\#}\codePreProc{CDP}\codePreProc{[}@\codePreProc{]}\codePreProc{\}}\\
+\codelnr{14\ }\tab{}\tab{}\codeIdentifier{I}=\codePreProc{\$((}\codePreProc{\$CDR}\codeConstant{-1}\codePreProc{))}\\
+\codelnr{15\ }\tab{}\tab{}\codeStatement{builtin} \codeStatement{cd} \codePreProc{\$\{}\codePreProc{CDP}\codePreProc{[}\codePreProc{\$I}\codePreProc{]}\codePreProc{\}}\\
+\codelnr{16\ }\tab{}\codeStatement{elif} \codeSpecial{[[} \codePreProc{\$1} \codeStatement{=}\textasciitilde{} \textasciicircum{}\codeStatement{[}+\codeStatement{][}+\codeStatement{]}(\codeStatement{[}\codeConstant{0-9}\codeStatement{]}*)\$ \codeSpecial{]]}\\
+\codelnr{17\ }\tab{}\codeStatement{then}\\
+\codelnr{18\ }\tab{}\tab{}\codeIdentifier{CDR}=\codePreProc{\$\{}\codePreProc{BASH\_REMATCH}\codePreProc{[}\codeConstant{1}\codePreProc{]}\codeStatement{:-}1\codePreProc{\}}\\
+\codelnr{19\ }\tab{}\tab{}\codeSpecial{[[} \codePreProc{\$CDR} \codeStatement{-lt} \codeConstant{1} \codeSpecial{]]} \codeStatement{\&\&} \codeIdentifier{CDR}=\codeConstant{1}\\
+\codelnr{20\ }\tab{}\tab{}\codeSpecial{[[} \codePreProc{\$CDR} \codeStatement{-gt} \codePreProc{\$\{\#}\codePreProc{CDP}\codePreProc{[}@\codePreProc{]}\codePreProc{\}} \codeSpecial{]]} \codeStatement{\&\&} \codeIdentifier{CDR}=\codePreProc{\$\{\#}\codePreProc{CDP}\codePreProc{[}@\codePreProc{]}\codePreProc{\}}\\
+\codelnr{21\ }\tab{}\tab{}\codeIdentifier{I}=\codePreProc{\$((}\codePreProc{\$CDR}\codeConstant{-1}\codePreProc{))}\\
+\codelnr{22\ }\tab{}\tab{}\codeStatement{builtin} \codeStatement{cd} \codePreProc{\$\{}\codePreProc{CDP}\codePreProc{[}\codePreProc{\$I}\codePreProc{]}\codePreProc{\}}\\
+\codelnr{23\ }\tab{}\codeStatement{elif} \codeSpecial{[[} \codePreProc{\$1} \codeStatement{==} \codeStatement{-i} \codeSpecial{]]}\\
+\codelnr{24\ }\tab{}\codeStatement{then}\\
+\codelnr{25\ }\tab{}\tab{}\codeStatement{unset} CDP\\
+\codelnr{26\ }\tab{}\tab{}CDP\codeStatement{[}\codeConstant{0}\codeStatement{]}\codeStatement{=}\codePreProc{\$PWD}\\
+\codelnr{27\ }\tab{}\tab{}\codeIdentifier{CDR}=\codeConstant{1}\\
+\codelnr{28\ }\tab{}\codeStatement{elif} \codeSpecial{[[} \codePreProc{\$1} \codeStatement{==} \codeStatement{-l} \codeSpecial{]]}\\
+\codelnr{29\ }\tab{}\codeStatement{then}\\
+\codelnr{30\ }\tab{}\tab{}\codeIdentifier{I}=\codeConstant{0}\\
+\codelnr{31\ }\tab{}\tab{}\codeStatement{for }item \codeStatement{in} \codePreProc{\$\{}\codePreProc{CDP}\codePreProc{[}@\codePreProc{]}\codePreProc{\}}\\
+\codelnr{32\ }\tab{}\tab{}\codeStatement{do}\\
+\codelnr{33\ }\tab{}\tab{}\tab{}\codeIdentifier{I}=\codePreProc{\$((}\codePreProc{\$I}\codeSpecial{+}\codeConstant{1}\codePreProc{))}\\
+\codelnr{34\ }\tab{}\tab{}\tab{}\codeStatement{echo} \codeStatement{-n} \codeStatement{[}\codePreProc{\$I}\codeStatement{]}\\
+\codelnr{35\ }\tab{}\tab{}\tab{}\codeStatement{if }\codeSpecial{[[} \codePreProc{\$I} \codeStatement{-eq} \codePreProc{\$CDR} \codeSpecial{]]}\\
+\codelnr{36\ }\tab{}\tab{}\tab{}\codeStatement{then}\\
+\codelnr{37\ }\tab{}\tab{}\tab{}\tab{}\codeStatement{echo} \codeStatement{-n} \codeStatement{\char13{}}\codeConstant{*}\codeStatement{\char13{}}\\
+\codelnr{38\ }\tab{}\tab{}\tab{}\codeStatement{else}\\
+\codelnr{39\ }\tab{}\tab{}\tab{}\tab{}\codeStatement{echo} \codeStatement{-n} \codeStatement{\char13{}}\codeConstant{ }\codeStatement{\char13{}}\\
+\codelnr{40\ }\tab{}\tab{}\tab{}\codeStatement{fi}\\
+\codelnr{41\ }\tab{}\tab{}\tab{}\codeStatement{echo} \codeStatement{-n} \codeStatement{\char13{}}\codeConstant{ }\codeStatement{\char13{}}\\
+\codelnr{42\ }\tab{}\tab{}\tab{}\codeStatement{echo} \codePreProc{\$item}\\
+\codelnr{43\ }\tab{}\tab{}\codeStatement{done}\\
+\codelnr{44\ }\tab{}\codeStatement{else}\\
+\codelnr{45\ }\tab{}\tab{}\codeStatement{builtin} \codeStatement{cd} \codePreProc{\$@}\\
+\codelnr{46\ }\tab{}\tab{}CDP\codeStatement{[}\codePreProc{\$CDR}\codeStatement{]}\codeStatement{=}\codePreProc{\$PWD}\\
+\codelnr{47\ }\tab{}\tab{}\codeIdentifier{CDR}=\codePreProc{\$((}\codePreProc{\$CDR}\codeSpecial{ + }\codeConstant{1}\codePreProc{))}\\
+\codelnr{48\ }\tab{}\codeStatement{fi}\\
+\codelnr{49\ }\codeSpecial{\}}

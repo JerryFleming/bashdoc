@@ -1,0 +1,83 @@
+\codelnr{\ 1\ }\codeComment{\# vim:filetype=readline}\\
+\codelnr{\ 2\ }\codeComment{\#}\\
+\codelnr{\ 3\ }\codeComment{\# 本文件控制所有使用 readline 库的程序的行输入行为。}\\
+\codelnr{\ 4\ }\codeComment{\# 这些程序包括 FTP，Bash 和 GDB。}\\
+\codelnr{\ 5\ }\codeComment{\#}\\
+\codelnr{\ 6\ }\codeComment{\# 可以用 C-x C-r 命令重新加载该文件。}\\
+\codelnr{\ 7\ }\codeComment{\# 以 \char13{}\#\char13{} 开头的行是注释。}\\
+\codelnr{\ 8\ }\codeComment{\#}\\
+\codelnr{\ 9\ }\codeComment{\# 首先，包含 /etc/Inputrc 中的任何系统绑定和变量。}\\
+\codelnr{10\ }\codePreProc{\$include} /etc/Inputrc\\
+\codelnr{11\ }\codeComment{\#}\\
+\codelnr{12\ }\codeComment{\# 设置 emacs 风格的绑定。}\\
+\codelnr{13\ }\codeStatement{set} \codeType{editing-mode} \codeConstant{emacs}\\
+\codelnr{14\ }\\
+\codelnr{15\ }\codeStatement{\$if} \codeType{mode}=\codeConstant{emacs}\\
+\codelnr{16\ }\codeConstant{Meta-Control-h}\codeStatement{:}  \codeType{backward-kill-word} 命令后面的文本会被忽略掉\\
+\codelnr{17\ }\codeComment{\#}\\
+\codelnr{18\ }\codeComment{\# 小键盘上的方向键}\\
+\codelnr{19\ }\codeComment{\#}\\
+\codelnr{20\ }\codeComment{\#"\textbackslash{}M-OD":\tab{}\tab{}backward-char}\\
+\codelnr{21\ }\codeComment{\#"\textbackslash{}M-OC":\tab{}\tab{}forward-char}\\
+\codelnr{22\ }\codeComment{\#"\textbackslash{}M-OA":\tab{}\tab{}previous-history}\\
+\codelnr{23\ }\codeComment{\#"\textbackslash{}M-OB":\tab{}\tab{}next-history}\\
+\codelnr{24\ }\codeComment{\#}\\
+\codelnr{25\ }\codeComment{\# ANSI 模式的方向键}\\
+\codelnr{26\ }\codeComment{\#}\\
+\codelnr{27\ }\codeConstant{"}\codeSpecial{\textbackslash{}M-}\codeConstant{[D"}\codeStatement{:}\tab{}\tab{}\codeType{backward-char}\\
+\codelnr{28\ }\codeConstant{"}\codeSpecial{\textbackslash{}M-}\codeConstant{[C"}\codeStatement{:}\tab{}\tab{}\codeType{forward-char}\\
+\codelnr{29\ }\codeConstant{"}\codeSpecial{\textbackslash{}M-}\codeConstant{[A"}\codeStatement{:}\tab{}\tab{}\codeType{previous-history}\\
+\codelnr{30\ }\codeConstant{"}\codeSpecial{\textbackslash{}M-}\codeConstant{[B"}\codeStatement{:}\tab{}\tab{}\codeType{next-history}\\
+\codelnr{31\ }\codeComment{\#}\\
+\codelnr{32\ }\codeComment{\# 八位小键盘上的方向键}\\
+\codelnr{33\ }\codeComment{\#}\\
+\codelnr{34\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-OD":\tab{}   backward-char}\\
+\codelnr{35\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-OC":\tab{}   forward-char}\\
+\codelnr{36\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-OA":\tab{}   previous-history}\\
+\codelnr{37\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-OB":\tab{}   next-history}\\
+\codelnr{38\ }\codeComment{\#}\\
+\codelnr{39\ }\codeComment{\# 八位 ANSI 模式的方向键 }\\
+\codelnr{40\ }\codeComment{\#}\\
+\codelnr{41\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-[D":\tab{}   backward-char}\\
+\codelnr{42\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-[C":\tab{}   forward-char}\\
+\codelnr{43\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-[A":\tab{}   previous-history}\\
+\codelnr{44\ }\codeComment{\#"\textbackslash{}M-\textbackslash{}C-[B":\tab{}   next-history}\\
+\codelnr{45\ }\codeConstant{C-q}\codeStatement{:} \codeType{quoted-insert}\\
+\codelnr{46\ }\codeStatement{\$endif}\\
+\codelnr{47\ }\\
+\codelnr{48\ }\codeComment{\# 旧式的绑定。这恰好也是默认的。}\\
+\codelnr{49\ }\codeSpecial{TAB}\codeStatement{:} \codeType{complete}\\
+\codelnr{50\ }\codeComment{\# 便于 shell 交互的宏。}\\
+\codelnr{51\ }\\
+\codelnr{52\ }\codeStatement{\$if} Bash\\
+\codelnr{53\ }\codeComment{\# 编辑 PATH 路径}\\
+\codelnr{54\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{xp"}\codeStatement{:} "PATH=\$\{PATH\}\textbackslash{}e\textbackslash{}C-e\textbackslash{}C-a\textbackslash{}ef\textbackslash{}C-f"\\
+\codelnr{55\ }\codeComment{\# 准备输入引用的单词：插入引号的开始和结束，然后移到开始引号的后面。}\\
+\codelnr{56\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{x}\codeSpecial{\textbackslash{}"}\codeConstant{"}\codeStatement{:} "\textbackslash{}"\textbackslash{}"\textbackslash{}C-b"\\
+\codelnr{57\ }\codeComment{\# 插入反斜杠（测试反斜杠转义序列和宏）。}\\
+\codelnr{58\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{x}\codeSpecial{\textbackslash{}\textbackslash{}}\codeConstant{"}\codeStatement{:} "\textbackslash{}\textbackslash{}"\\
+\codelnr{59\ }\codeComment{\# 用引号引用当前或前一个单词。}\\
+\codelnr{60\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{xq"}\codeStatement{:} "\textbackslash{}eb\textbackslash{}"\textbackslash{}ef\textbackslash{}""\\
+\codelnr{61\ }\codeComment{\# 绑定刷新本行的命令；这原来是没有绑定的。}\\
+\codelnr{62\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{xr"}\codeStatement{:} \codeType{redraw-current-line}\\
+\codelnr{63\ }\codeComment{\# 编辑本行中的变量。}\\
+\codelnr{64\ }\codeConstant{"}\codeSpecial{\textbackslash{}M-\textbackslash{}C-}\codeConstant{v"}\codeStatement{:} "\textbackslash{}C-a\textbackslash{}C-k\$\textbackslash{}C-y\textbackslash{}M-\textbackslash{}C-e\textbackslash{}C-a\textbackslash{}C-y="\\
+\codelnr{65\ }\codeStatement{\$endif}\\
+\codelnr{66\ }\\
+\codelnr{67\ }\codeComment{\# 如果可以响铃就使用}\\
+\codelnr{68\ }\codeStatement{set} \codeType{bell-style} \codeConstant{visible}\\
+\codelnr{69\ }\codeComment{\# 读取输入时不要把字符截成 7 位。}\\
+\codelnr{70\ }\codeStatement{set} \codeType{input-meta} \codeConstant{on}\\
+\codelnr{71\ }\codeComment{\# 允许插入 iso-latin1 字符，而不是把它们变成 Meta 化的序列。}\\
+\codelnr{72\ }\codeStatement{set} \codeType{convert-meta} \codeConstant{off}\\
+\codelnr{73\ }\codeComment{\# 直接显示八位的字符，而不是把它们当成 Meta 化的字符来显示。}\\
+\codelnr{74\ }\codeStatement{set} \codeType{output-meta} \codeConstant{on}\\
+\codelnr{75\ }\codeComment{\# 如果可以补全的项目超过 150 条，询问用户是否要显示全部。}\\
+\codelnr{76\ }\codeStatement{set} \codeType{completion-query-items} \codeConstant{150}\\
+\codelnr{77\ }\\
+\codelnr{78\ }\codeComment{\# 用于 FTP}\\
+\codelnr{79\ }\codeStatement{\$if} Ftp\\
+\codelnr{80\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{xg"}\codeStatement{:} "get \textbackslash{}M-?"\\
+\codelnr{81\ }\codeConstant{"}\codeSpecial{\textbackslash{}C-}\codeConstant{xt"}\codeStatement{:} "put \textbackslash{}M-?"\\
+\codelnr{82\ }\codeConstant{"}\codeSpecial{\textbackslash{}M-}\codeConstant{."}\codeStatement{:} \codeType{yank-last-arg}\\
+\codelnr{83\ }\codeStatement{\$endif}
